@@ -1,4 +1,4 @@
-package com.example.shoppingapp
+package com.example.shoppingapp.ui.screens
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -7,11 +7,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
-import androidx.compose.material.icons.filled.Phone
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material.icons.outlined.Favorite
-import androidx.compose.material.icons.outlined.Phone
 import androidx.compose.material.icons.outlined.Search
 import androidx.compose.material.icons.outlined.ShoppingCart
 import androidx.compose.material3.*
@@ -19,11 +17,13 @@ import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.shoppingapp.R
 import com.example.shoppingapp.ui.theme.ShoppingAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -45,28 +45,29 @@ data class BottomNavigationItem(
 
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
-fun ShoppingApp(modifier: Modifier = Modifier) {
+fun ShoppingApp() {
     val navController = rememberNavController()
+    val context = LocalContext.current
 
     val navItems = listOf(
         BottomNavigationItem(
-            title = "Listy zakupów",
+            title = stringResource(id = R.string.route_shopping_lists),
             selectedIcon = Icons.Filled.ShoppingCart,
             unselectedIcon = Icons.Outlined.ShoppingCart
         ),
         BottomNavigationItem(
-            title = "Skanowanie produktu",
+            title = stringResource(id = R.string.route_scanner),
             selectedIcon = Icons.Filled.Search,
             unselectedIcon = Icons.Outlined.Search
         ),
         BottomNavigationItem(
-            title = "Ulubione sklepy",
+            title = stringResource(id = R.string.route_favourite_shops),
             selectedIcon = Icons.Filled.Favorite,
             unselectedIcon = Icons.Outlined.Favorite
         )
     )
 
-    var selectedItemIndex = rememberSaveable { mutableIntStateOf(0) }
+    val selectedItemIndex = rememberSaveable { mutableIntStateOf(0) }
 
     Surface(
         modifier = Modifier.fillMaxSize(),
@@ -98,12 +99,12 @@ fun ShoppingApp(modifier: Modifier = Modifier) {
         ) { innerPadding ->
             NavHost(
                 navController = navController,
-                startDestination = "Listy zakupów",
+                startDestination = stringResource(R.string.route_shopping_lists),
                 modifier = Modifier.padding(innerPadding)
             ) {
-                composable("Listy zakupów") { ShoppingLists(modifier) }
-                composable("Skanowanie produktu") { Scanner(modifier) }
-                composable("Ulubione sklepy") { FavouriteShops(modifier) }
+                composable(context.getString(R.string.route_shopping_lists)) { ShoppingListsScreen() }
+                composable(context.getString(R.string.route_scanner)) { ScannerScreen() }
+                composable(context.getString(R.string.route_favourite_shops)) { FavouriteShopsScreen() }
             }
         }
     }
