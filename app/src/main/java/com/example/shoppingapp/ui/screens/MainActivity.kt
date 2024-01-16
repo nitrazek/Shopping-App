@@ -24,8 +24,11 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.shoppingapp.R
+import com.example.shoppingapp.ui.screens.favouriteshops.FavouriteShopsScreen
 import com.example.shoppingapp.ui.theme.ShoppingAppTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
