@@ -24,7 +24,10 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.shoppingapp.R
+import com.example.shoppingapp.ui.screens.addShop.AddShopScreen
 import com.example.shoppingapp.ui.screens.favouriteshops.FavouriteShopsScreen
+import com.example.shoppingapp.ui.screens.scanner.ScannerScreen
+import com.example.shoppingapp.ui.screens.shoppingList.ShoppingListsScreen
 import com.example.shoppingapp.ui.theme.ShoppingAppTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -107,7 +110,8 @@ fun ShoppingApp() {
             ) {
                 composable(context.getString(R.string.route_shopping_lists)) { ShoppingListsScreen() }
                 composable(context.getString(R.string.route_scanner)) { ScannerScreen() }
-                composable(context.getString(R.string.route_favourite_shops)) { FavouriteShopsScreen() }
+                composable(context.getString(R.string.route_favourite_shops)) { FavouriteShopsScreen(navController) }
+                composable(context.getString(R.string.route_add_shop)) { AddShopScreen() }
             }
         }
     }

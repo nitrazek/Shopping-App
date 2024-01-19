@@ -1,12 +1,17 @@
-package com.example.shoppingapp.models
+package com.example.shoppingapp.models.db.entities
 
-import android.location.Address
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
-data class Shop(
-    val name: String,
-    val city: String? = null,
-    val street: String? = null,
-    val postalCode: String? = null
+@Entity(tableName = "shopAddresses")
+data class ShopAddress(
+    @PrimaryKey val id: Long,
+    val shopId: Long,
+    val city: String,
+    val street: String,
+    val postalCode: String,
+    val latitude: Double,
+    val longitude: Double
 ) {
     fun getAddressText(): String {
         val stringBuilder = StringBuilder("")

@@ -12,7 +12,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.LocationOn
 import androidx.compose.material.icons.filled.Settings
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -23,11 +22,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.shoppingapp.models.Shop
+import com.example.shoppingapp.models.db.entities.Shop
+import com.example.shoppingapp.models.db.entities.ShopAddress
+import com.example.shoppingapp.models.db.relations.ShopWithAddress
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ShopItem(shop: Shop) {
+fun ShopItem(shopWithAddress: ShopWithAddress) {
     Surface(
         modifier = Modifier
             .fillMaxWidth(),
@@ -41,7 +41,7 @@ fun ShopItem(shop: Shop) {
         ) {
             Row {
                 Text(
-                    text = shop.name,
+                    text = shopWithAddress.shop.name,
                     fontSize = 20.sp,
                     fontWeight = FontWeight.Bold
                 )
@@ -60,7 +60,7 @@ fun ShopItem(shop: Shop) {
             }
             Row {
                 Text(
-                    text = shop.getAddressText(),
+                    text = shopWithAddress.address.getAddressText(),
                     fontSize = 15.sp
                 )
             }
@@ -71,10 +71,20 @@ fun ShopItem(shop: Shop) {
 @Preview(showBackground = true)
 @Composable
 fun ShopItemPreview() {
-    ShopItem(shop = Shop(
-        name = "NAjLepSZE HOTdogI!!11!",
-        city = "Białystok",
-        street = "Szkolna 17",
-        postalCode = "15-123"
-    ))
+    ShopItem(shopWithAddress = ShopWithAddress(
+        shop = Shop(
+            id = 1,
+            name = "NAjLepSZE HOTdogI!!11!"
+        ),
+        address = ShopAddress(
+            id = 1,
+            shopId = 1,
+            city = "Białystok",
+            street = "Szkolna 17",
+            postalCode = "15-123",
+            longitude = 12.123123,
+            latitude = 12.121212
+        )
+    )
+    )
 }

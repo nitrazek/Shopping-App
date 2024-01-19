@@ -3,4 +3,5 @@
     <string name="route_shopping_lists">Listy zakupów</string>
     <string name="route_scanner">Skanowanie produktu</string>
     <string name="route_favourite_shops">Ulubione sklepy</string>
+    <string name="route_add_shop">Dodaj sklep</string>
 </resources>
