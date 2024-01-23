@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ShoppingApp</string>
+    <string name="route_shopping_lists">Shopping List</string>
+    <string name="route_scanner">Scanning Product</string>
+    <string name="route_favourite_shops">Favourite shops</string>
+    <string name="route_add_shop">Add shop</string>
+    <string name="search_hint">Search</string>
+    <string name="notification_title">Welcome to the application</string>
+    <string name="notification_description">Welcome to our wonderful app!</string>
+</resources>

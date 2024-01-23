@@ -5,8 +5,8 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "shopAddresses")
 data class ShopAddress(
-    @PrimaryKey val id: Long,
-    val shopId: Long,
+    @PrimaryKey(autoGenerate = true) val id: Long = 0,
+    val shopId: Long = 0,
     val city: String,
     val street: String,
     val postalCode: String,

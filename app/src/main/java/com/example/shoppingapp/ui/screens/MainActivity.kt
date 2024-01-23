@@ -25,6 +25,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.shoppingapp.R
 import com.example.shoppingapp.ui.screens.addShop.AddShopScreen
+import com.example.shoppingapp.ui.screens.allShopingLists.AllShoppingListsScreen
 import com.example.shoppingapp.ui.screens.favouriteshops.FavouriteShopsScreen
 import com.example.shoppingapp.ui.screens.scanner.ScannerScreen
 import com.example.shoppingapp.ui.screens.shoppingList.ShoppingListsScreen
@@ -108,10 +109,10 @@ fun ShoppingApp() {
                 startDestination = stringResource(R.string.route_shopping_lists),
                 modifier = Modifier.padding(innerPadding)
             ) {
-                composable(context.getString(R.string.route_shopping_lists)) { ShoppingListsScreen() }
+                composable(context.getString(R.string.route_shopping_lists)) { AllShoppingListsScreen() }
                 composable(context.getString(R.string.route_scanner)) { ScannerScreen() }
                 composable(context.getString(R.string.route_favourite_shops)) { FavouriteShopsScreen(navController) }
-                composable(context.getString(R.string.route_add_shop)) { AddShopScreen() }
+                composable(context.getString(R.string.route_add_shop)) { AddShopScreen(navController) }
             }
         }
     }

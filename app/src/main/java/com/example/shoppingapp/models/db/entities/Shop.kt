@@ -8,6 +8,6 @@ import androidx.room.Relation
 
 @Entity(tableName = "shops")
 data class Shop(
-    @PrimaryKey val id: Long,
+    @PrimaryKey(autoGenerate = true) val id: Long = 0,
     val name: String
 )
