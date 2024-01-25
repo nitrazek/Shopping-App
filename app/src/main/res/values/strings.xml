@@ -3,8 +3,17 @@
     <string name="route_shopping_lists">Listy zakupów</string>
     <string name="route_scanner">Skanowanie produktu</string>
     <string name="route_favourite_shops">Ulubione sklepy</string>
-    <string name="route_add_shop">Dodaj sklep</string>
     <string name="search_hint">Wyszukaj</string>
     <string name="notification_title">Witamy w aplikacji</string>
     <string name="notification_description">Witamy w naszej wspaniałej aplikacji!</string>
+
+    <string name="route_add_shop">Dodaj sklep</string>
+    <string name="shop_name_placeholder">Nazwa</string>
+    <string name="shop_latitude_placeholder">Szerokość geograficzna</string>
+    <string name="shop_longitude_placeholder">Długość geograficzna</string>
+    <string name="shop_city_placeholder">Miasto</string>
+    <string name="shop_street_placeholder">Ulica</string>
+    <string name="shop_postal_code_placeholder">Kod pocztowy</string>
+
+    <string name="route_add_product">Dodaj produkt</string>
 </resources>

@@ -14,7 +14,7 @@ import kotlinx.coroutines.flow.Flow
 interface ShopDao {
     @Transaction
     @Query("SELECT * FROM shops")
-    fun getShops(): Flow<List<ShopWithAddress>>
+    suspend fun getShops(): List<ShopWithAddress>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addShop(shop: Shop): Long

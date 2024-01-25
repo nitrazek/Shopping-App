@@ -60,7 +60,7 @@ fun ShopItem(shopWithAddress: ShopWithAddress) {
             }
             Row {
                 Text(
-                    text = shopWithAddress.address.getAddressText(),
+                    text = if(shopWithAddress.address == null) "" else shopWithAddress.address.getAddressText(),
                     fontSize = 15.sp
                 )
             }

@@ -24,10 +24,15 @@ import com.example.shoppingapp.models.repositories.ProductWithQuantity
 import com.example.shoppingapp.ui.theme.ShoppingAppTheme
 import com.example.shoppingapp.viewmodels.ShoppingListViewModel
 import androidx.core.content.ContextCompat.startActivity
+import com.example.shoppingapp.R
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ShoppingListsScreen(viewModel: ShoppingListViewModel = hiltViewModel()) {
+fun ShoppingListScreen(
+    navController: NavController,
+    viewModel: ShoppingListViewModel = hiltViewModel()) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val context = LocalContext.current
 
@@ -46,6 +51,15 @@ fun ShoppingListsScreen(viewModel: ShoppingListViewModel = hiltViewModel()) {
                 Icon(
                     imageVector = Icons.Filled.Send,
                     contentDescription = "Open map"
+                )
+            }
+            FloatingActionButton(
+                onClick = {
+                    navController.navigate(context.getString(R.string.route_add_product))
+                }) {
+                Icon(
+                    imageVector = Icons.Filled.Add,
+                    contentDescription = "Dodaj produkt"
                 )
             }
         }
@@ -85,6 +99,6 @@ fun ProductItem(product: ProductWithQuantity) {
 @Preview(showBackground = true)
 @Composable
 fun ShoppingListScreenPreview() {
-    ShoppingListsScreen()
+    ShoppingListScreen(navController = rememberNavController())
 }
 

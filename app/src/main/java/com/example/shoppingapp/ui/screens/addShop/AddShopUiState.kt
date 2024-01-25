@@ -4,7 +4,7 @@ data class AddShopUiState(
     var isLoading: Boolean = false,
 
     var nameText: String = "",
-    var isNameValid: Boolean = true,
+    var isNameValid: Boolean = false,
 
     var latitudeText: String = "",
     var isLatitudeValid: Boolean = true,

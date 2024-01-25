@@ -4,8 +4,17 @@
     <string name="route_shopping_lists">Shopping List</string>
     <string name="route_scanner">Scanning Product</string>
     <string name="route_favourite_shops">Favourite shops</string>
-    <string name="route_add_shop">Add shop</string>
     <string name="search_hint">Search</string>
     <string name="notification_title">Welcome to the application</string>
     <string name="notification_description">Welcome to our wonderful app!</string>
+
+    <string name="route_add_shop">Add shop</string>
+    <string name="shop_name_placeholder">Name</string>
+    <string name="shop_latitude_placeholder">Latitude</string>
+    <string name="shop_longitude_placeholder">Longitude</string>
+    <string name="shop_city_placeholder">City</string>
+    <string name="shop_street_placeholder">Street</string>
+    <string name="shop_postal_code_placeholder">Postal code</string>
+
+    <string name="route_add_product">Add product</string>
 </resources>

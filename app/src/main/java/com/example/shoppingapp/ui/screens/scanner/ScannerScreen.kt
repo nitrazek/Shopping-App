@@ -42,29 +42,31 @@ fun ScannerScreen() {
             val resultString = result.data?.getStringExtra("SCAN_RESULT")
             if(resultString != null) {
                 val apiService = ApiService()
-                apiService.getProduct(resultString, object: Callback<Map<String, Map<String, String>>> {
+                apiService.getProduct(resultString, object: Callback<Map<String, Any>> {
                     override fun onResponse(
-                        call: Call<Map<String, Map<String, String>>>,
-                        response: Response<Map<String, Map<String, String>>>
+                        call: Call<Map<String, Any>>,
+                        response: Response<Map<String, Any>>
                     ) {
-                        Log.d("API", response.toString())
-                        Log.d("API", response.message())
-                        Log.d("API", response.body().toString())
                         if (response.isSuccessful) {
                             val product = response.body()?.get("product")
-                            val productName = product?.get("product_name")
-                            if(productName != null) {
-                                Toast.makeText(context, productName, Toast.LENGTH_SHORT).show()
-                            } else {
+                            if (product == null) {
                                 Toast.makeText(context, "Nieznany produkt", Toast.LENGTH_SHORT).show()
+                                return
                             }
+                            val productName = (product as Map<*, *>)["product_name"]
+                            if(productName == null) {
+                                Toast.makeText(context, "Nieznany produkt", Toast.LENGTH_SHORT).show()
+                                return
+                            }
+
+                            Toast.makeText(context, productName.toString(), Toast.LENGTH_SHORT).show()
                         } else {
                             Toast.makeText(context, "Błąd przy pobieraniu produktu", Toast.LENGTH_SHORT).show()
                         }
                     }
 
                     override fun onFailure(
-                        call: Call<Map<String, Map<String, String>>>,
+                        call: Call<Map<String, Any>>,
                         t: Throwable
                     ) {
                         t.printStackTrace()

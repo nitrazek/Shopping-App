@@ -11,7 +11,9 @@ import javax.inject.Inject
 class FavouriteShopsRepository @Inject constructor(
     private val shopDao: ShopDao
 ) {
-    val shops: Flow<List<ShopWithAddress>> = shopDao.getShops()
+    suspend fun getShopsWithAddresses(): List<ShopWithAddress> {
+        return shopDao.getShops()
+    }
 
     suspend fun addShop(shopAddDTO: ShopAddDTO) {
         val shop = Shop(name = shopAddDTO.name)

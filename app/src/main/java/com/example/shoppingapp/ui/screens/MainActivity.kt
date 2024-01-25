@@ -24,11 +24,14 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.shoppingapp.R
+import com.example.shoppingapp.models.repositories.ShoppingListRepository
+import com.example.shoppingapp.ui.screens.addProduct.AddProductScreen
 import com.example.shoppingapp.ui.screens.addShop.AddShopScreen
 import com.example.shoppingapp.ui.screens.allShopingLists.AllShoppingListsScreen
 import com.example.shoppingapp.ui.screens.favouriteshops.FavouriteShopsScreen
 import com.example.shoppingapp.ui.screens.scanner.ScannerScreen
-import com.example.shoppingapp.ui.screens.shoppingList.ShoppingListsScreen
+import com.example.shoppingapp.ui.screens.shoppingList.ShoppingListScreen
+import com.example.shoppingapp.ui.screens.shoppingList.ShoppingListScreenPreview
 import com.example.shoppingapp.ui.theme.ShoppingAppTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -54,6 +57,7 @@ data class BottomNavigationItem(
 @OptIn(ExperimentalMaterial3Api::class)
 fun ShoppingApp() {
     val navController = rememberNavController()
+    val snackbarHostState = remember { SnackbarHostState() }
     val context = LocalContext.current
 
     val navItems = listOf(
@@ -81,6 +85,7 @@ fun ShoppingApp() {
         color = MaterialTheme.colorScheme.background
     ) {
         Scaffold(
+            snackbarHost = { SnackbarHost(hostState = snackbarHostState) },
             bottomBar = {
                 NavigationBar {
                     navItems.forEachIndexed { index, item ->
@@ -109,10 +114,12 @@ fun ShoppingApp() {
                 startDestination = stringResource(R.string.route_shopping_lists),
                 modifier = Modifier.padding(innerPadding)
             ) {
-                composable(context.getString(R.string.route_shopping_lists)) { AllShoppingListsScreen() }
+                composable(context.getString(R.string.route_shopping_lists)) { AllShoppingListsScreen(navController) }
                 composable(context.getString(R.string.route_scanner)) { ScannerScreen() }
                 composable(context.getString(R.string.route_favourite_shops)) { FavouriteShopsScreen(navController) }
-                composable(context.getString(R.string.route_add_shop)) { AddShopScreen(navController) }
+                composable(context.getString(R.string.route_add_shop)) { AddShopScreen(navController, snackbarHostState) }
+                composable("Przejdź do listy") { ShoppingListScreen(navController) }
+                composable("Dodaj produkt") { AddProductScreen(navController) }
             }
         }
     }

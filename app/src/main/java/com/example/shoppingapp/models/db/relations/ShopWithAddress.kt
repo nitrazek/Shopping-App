@@ -10,5 +10,5 @@ data class ShopWithAddress(
     @Relation(
         parentColumn = "id",
         entityColumn = "shopId"
-    ) val address: ShopAddress
+    ) val address: ShopAddress?
 )

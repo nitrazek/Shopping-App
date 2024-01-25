@@ -20,7 +20,7 @@ import com.example.shoppingapp.models.db.relations.ShoppingListProductRef
         ShopAddress::class,
         ShoppingListProductRef::class
     ],
-    version = 2)
+    version = 1)
 abstract class Database : RoomDatabase() {
     abstract fun shoppingListDao(): ShoppingListDao
     abstract fun productDao(): ProductDao

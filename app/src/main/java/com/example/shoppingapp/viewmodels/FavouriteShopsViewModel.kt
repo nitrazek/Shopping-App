@@ -2,6 +2,7 @@ package com.example.shoppingapp.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.shoppingapp.models.db.relations.ShopWithAddress
 import com.example.shoppingapp.models.repositories.FavouriteShopsRepository
 import com.example.shoppingapp.ui.screens.favouriteshops.FavouriteShopsUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -19,11 +20,16 @@ class FavouriteShopsViewModel @Inject constructor(
     private val _uiState = MutableStateFlow(FavouriteShopsUiState())
     val uiState: StateFlow<FavouriteShopsUiState> = _uiState.asStateFlow()
 
-    init {
+    private fun execute(task: suspend () -> Unit) {
         viewModelScope.launch {
-            repository.shops.collect { shops ->
-                _uiState.update { currentState -> currentState.copy(shops = shops) }
-            }
+            task()
+        }
+    }
+
+    fun fetchShops() {
+        execute {
+            val shops: List<ShopWithAddress> = repository.getShopsWithAddresses()
+            _uiState.update { currentState -> currentState.copy(shops = shops) }
         }
     }
 }

@@ -3,6 +3,8 @@ package com.example.shoppingapp.di
 import android.content.Context
 import androidx.room.Room
 import com.example.shoppingapp.models.db.Database
+import com.example.shoppingapp.models.db.MIGRATION_1_2
+import com.example.shoppingapp.models.db.MIGRATION_2_3
 import com.example.shoppingapp.models.db.dao.ShoppingListDao
 import com.example.shoppingapp.models.db.dao.ProductDao
 import com.example.shoppingapp.models.db.dao.ShopDao
@@ -21,7 +23,7 @@ class DatabaseModule {
             appContext,
             Database::class.java,
             "database"
-        ).build()
+        ).fallbackToDestructiveMigration().build()
     }
 
     @Provides
